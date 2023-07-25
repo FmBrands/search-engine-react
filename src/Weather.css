@@ -1,0 +1,9 @@
+.weather {
+  max-width: 600px;
+  margin: 50px;
+  border: 1px solid gainsboro;
+}
+
+h1 {
+  padding: 15px;
+}
