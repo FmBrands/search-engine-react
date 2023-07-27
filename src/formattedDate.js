@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function formattedDate(props) {
-  return "Thursday";
+  return <div>{props.date}</div>;
 }
