@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Weather.css";
+import Update from "./Update";
 
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
@@ -9,8 +10,6 @@ export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({});
 
   function handleResponse(response) {
-    console.log(response.data);
-
     setReady(true);
     setWeatherData({
       temperature: Math.round(response.data.main.temp),
@@ -48,7 +47,7 @@ export default function Weather(props) {
         <h1>{weatherData.city}</h1>
         <ul>
           <li>
-            <formattedDate date={weatherData.date} />
+            <Update date={weatherData.date} />
           </li>
           <li className="text-capitalize">{weatherData.description}</li>
         </ul>
