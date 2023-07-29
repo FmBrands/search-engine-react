@@ -19,14 +19,18 @@ export default function Weather(props) {
       description: response.data.weather[0].description,
       wind: Math.round(response.data.wind.speed),
       humidity: response.data.main.humidity,
-      iconUrl: "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+      iconUrl: ` https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
     });
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-
-    alert(city);
+    search();
+  }
+  function search() {
+    const apiKey = "d3cfc8e21373609a59380c0e9070f5be";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
   }
 
   function handleCityChange(event) {
@@ -45,6 +49,7 @@ export default function Weather(props) {
                 placeholder="Type a city..."
                 className="form-control"
                 autoFocus="on"
+                onChange={handleCityChange}
               />
             </div>
             <div className=" col-3 ">
@@ -52,7 +57,6 @@ export default function Weather(props) {
                 type="submit"
                 value="Search"
                 className="  btn btn-primary w-100"
-                onChange={handleCityChange}
               />
             </div>
           </div>
@@ -61,9 +65,8 @@ export default function Weather(props) {
       </div>
     );
   } else {
-    const apiKey = "d3cfc8e21373609a59380c0e9070f5be";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(handleResponse);
+    search();
+
     return "loading...";
   }
 }

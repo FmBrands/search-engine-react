@@ -3,6 +3,7 @@ import React from "react";
 export default function Update(props) {
   let days = [
     "Sunday",
+    "Monday",
     "Tuesday",
     "Wednesday",
     "Thursday",
